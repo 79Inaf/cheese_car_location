@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\BookingRepository;
 use Doctrine\ORM\Mapping as ORM;
+use DateTime;
 
 #[ORM\Entity(repositoryClass: BookingRepository::class)]
 class Booking
@@ -14,10 +15,10 @@ class Booking
     private ?int $id = null;
 
     #[ORM\Column(nullable: true)]
-    private ?\DateTimeImmutable $beginAt = null;
+    private ?DateTime $beginAt = null;
 
     #[ORM\Column(nullable: true)]
-    private ?\DateTimeImmutable $endAt = null;
+    private ?DateTime $endAt = null;
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $title = null;
@@ -27,24 +28,24 @@ class Booking
         return $this->id;
     }
 
-    public function getBeginAt(): ?\DateTimeImmutable
+    public function getBeginAt(): ?DateTime
     {
         return $this->beginAt;
     }
 
-    public function setBeginAt(?\DateTimeImmutable $beginAt): self
+    public function setBeginAt(?DateTime $beginAt): self
     {
         $this->beginAt = $beginAt;
 
         return $this;
     }
 
-    public function getEndAt(): ?\DateTimeImmutable
+    public function getEndAt(): ?DateTime
     {
         return $this->endAt;
     }
 
-    public function setEndAt(?\DateTimeImmutable $endAt): self
+    public function setEndAt(?DateTime $endAt): self
     {
         $this->endAt = $endAt;
 

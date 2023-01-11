@@ -51,4 +51,7 @@
     <a href="{{ path('app_vehicle_edit', {'id': vehicle.id}) }}">edit</a>
 
     {{ include('vehicle/_delete_form.html.twig') }}
+    <div class="col-6">
+{% include "booking/calendar.html.twig" %}
+    </div>
 {% endblock %}
