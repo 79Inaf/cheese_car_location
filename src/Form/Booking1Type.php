@@ -4,7 +4,9 @@ namespace App\Form;
 
 use App\Entity\Booking;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -14,16 +16,27 @@ class Booking1Type extends AbstractType
     {
         $builder
             ->add('beginAt', DateType::class, [
+                'label' => 'Du',
                 'widget' => 'single_text',
                 // this is actually the default format for single_text
                 'format' => 'yyyy-MM-dd',
+                'attr' => ['class' => 'form-control mt-2 mb-2'],
             ])
             ->add('endAt', DateType::class, [
+                'label' => 'Au',
                 'widget' => 'single_text',
                 // this is actually the default format for single_text
                 'format' => 'yyyy-MM-dd',
+                'attr' => ['class' => 'form-control mt-2 mb-2'],
             ])
-            ->add('title')
+            ->add('title', ChoiceType::class, [
+                'label' => 'statut',
+                'choices' => [
+                    'disponible' => 'disponible',
+                    'réservé' => 'réservé',
+                ],
+                'attr' => ['class' => 'form-control mt-2 mb-2'],
+            ])
         ;
     }
 

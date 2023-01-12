@@ -1,30 +1,28 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Booking index{% endblock %}
+{% block title %}Liste créneaux{% endblock %}
 
 {% block body %}
-    <h1>Booking index</h1>
+    <h1>Liste créneaux</h1>
 
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
-                <th>BeginAt</th>
-                <th>EndAt</th>
-                <th>Title</th>
+                <th>Du</th>
+                <th>Au</th>
+                <th>Statut</th>
                 <th>actions</th>
             </tr>
         </thead>
         <tbody>
         {% for booking in bookings %}
             <tr>
-                <td>{{ booking.id }}</td>
                 <td>{{ booking.beginAt ? booking.beginAt|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ booking.endAt ? booking.endAt|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ booking.title }}</td>
                 <td>
-                    <a href="{{ path('app_booking_show', {'id': booking.id}) }}">show</a>
-                    <a href="{{ path('app_booking_edit', {'id': booking.id}) }}">edit</a>
+                    <a class="btn btn-warning m-2" href="{{ path('app_booking_show', {'id': booking.id}) }}">voir</a>
+                    <a class="btn btn-warning m-2" href="{{ path('app_booking_edit', {'id': booking.id}) }}">modifier</a>
                 </td>
             </tr>
         {% else %}
