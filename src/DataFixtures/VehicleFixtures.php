@@ -68,4 +68,3 @@ class VehicleFixtures extends Fixture
         $manager->flush();
     }
 }
-
