@@ -54,6 +54,16 @@ class VehicleFixtures extends Fixture
         $vehicle3->setKilometrage('12000');
         $manager->persist($vehicle3);
 
+        $vehicle4 = new Vehicle;
+        $vehicle4->setType('cabriolet');
+        $vehicle4->setNombrePlaces('1');
+        $vehicle4->setAnnee('1949');
+        $vehicle4->setBoiteVitesse('néant');
+        $vehicle4->setEnergie('pédales');
+        $vehicle4->setMarque('Oui-Oui-mobile');
+        $vehicle4->setPhoto('https://s2.qwant.com/thumbr/700x0/f/3/f4524518eff25b70e2e323b33b63d108ded8a996193615a54cf3e11a5e5945/71DI8A8-4oL._SL1500_.jpg?u=http%3A%2F%2Fwww.e-motoculture.fr%2Fwp-content%2Fuploads%2F2019%2F05%2F71DI8A8-4oL._SL1500_.jpg&q=0&b=1&p=0&a=0');
+        $vehicle4->setKilometrage('135000');
+        $manager->persist($vehicle4);
 
         $manager->flush();
     }
