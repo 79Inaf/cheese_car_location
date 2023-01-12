@@ -39,7 +39,9 @@
 					<td>
 						<a href="{{ path('app_vehicle_show', {'id': vehicle.id}) }}">Voir</a>
 						{% if is_granted('ROLE_OWNER') %}
-							<a href="{{ path('app_vehicle_edit', {'id': vehicle.id}) }}">Modifier</a>
+							{% if app.user.id == vehicle.owner.id %}
+								<a href="{{ path('app_vehicle_edit', {'id': vehicle.id}) }}">Modifier</a>
+							{% endif %}
 						{% endif %}
 					</td>
 				</tr>

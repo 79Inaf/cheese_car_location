@@ -34,6 +34,8 @@ class UserFixtures extends Fixture
 
         // Création d’un utilisateur de type “pro” 
         $pro = new User();
+        $pro->setPrenom('Fernand');
+        $pro->setNom('Roquefort');
         $pro->setEmail('pro@voiture.com');
         $pro->setRoles(['ROLE_OWNER']);
         $hashedPassword = $this->passwordHasher->hashPassword(
@@ -43,6 +45,7 @@ class UserFixtures extends Fixture
 
         $pro->setPassword($hashedPassword);
         $manager->persist($pro);
+        $this->addReference('vehicle_owner', $pro);
 
         // Création d’un utilisateur de type “admin” 
         $admin = new User();
@@ -55,6 +58,7 @@ class UserFixtures extends Fixture
 
         $admin->setPassword($hashedPassword);
         $manager->persist($admin);
+        $this->addReference('vehicle_admin', $admin);
 
         $manager->flush();
     }
