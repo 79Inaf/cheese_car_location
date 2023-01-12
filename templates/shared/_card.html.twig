@@ -1,0 +1,30 @@
+<div class="card " style="width: 46rem;">
+	<img src="{{ vehicle.photo }}" class="card-img-top" alt="photo voiture">
+	<div class="card-body">
+		<h5 class="card-title">{{ vehicle.marque }}</h5>
+		<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+	</div>
+	<ul class="list-group list-group-flush">
+		<li class="list-group-item">
+			<strong>Type -</strong>
+			{{ vehicle.type }}</li>
+		<li class="list-group-item">
+			<strong>Nombre places -</strong>
+			{{ vehicle.nombrePlaces }}</li>
+		<li class="list-group-item">
+			<strong>Année -</strong>
+			{{ vehicle.annee }}</li>
+		<li class="list-group-item">
+			<strong>Boite de vitesse -</strong>
+			{{ vehicle.boiteVitesse }}</li>
+		<li class="list-group-item">
+			<strong>Energie -</strong>
+			{{ vehicle.energie }}</li>
+		<li class="list-group-item">
+			<strong>Kilometrage -</strong>
+			{{ vehicle.kilometrage }}</li>
+	</ul>
+	<div class="card-body text-center">
+		<a href="{{ path('app_vehicle_index') }}" class="btn card-link">back to list</a>
+	</div>
+</div>
