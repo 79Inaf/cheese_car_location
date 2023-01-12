@@ -42,6 +42,9 @@ class Vehicle
     #[ORM\OneToMany(mappedBy: 'vehicle', targetEntity: Booking::class)]
     private Collection $bookings;
 
+    #[ORM\ManyToOne(inversedBy: 'vehicles')]
+    private ?User $owner = null;
+
     public function __construct()
     {
         $this->bookings = new ArrayCollection();
@@ -174,6 +177,18 @@ class Vehicle
                 $booking->setVehicle(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getOwner(): ?User
+    {
+        return $this->owner;
+    }
+
+    public function setOwner(?User $owner): self
+    {
+        $this->owner = $owner;
 
         return $this;
     }
