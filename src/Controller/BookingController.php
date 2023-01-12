@@ -30,9 +30,9 @@ class BookingController extends AbstractController
     }
 
     #[Route('/new/{id}', name: 'app_booking_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, BookingRepository $bookingRepository, Vehicle $vehicle): Response
+    public function new (Request $request, BookingRepository $bookingRepository, Vehicle $vehicle): Response
     {
-        
+
         $booking = new Booking();
         $form = $this->createForm(Booking1Type::class, $booking);
         $form->handleRequest($request);
@@ -41,7 +41,7 @@ class BookingController extends AbstractController
             $booking->setVehicle($vehicle);
             $bookingRepository->save($booking, true);
 
-            return $this->redirectToRoute('app_booking_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_vehicle_show', ['id' => $vehicle->getId()], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('booking/new.html.twig', [
@@ -79,7 +79,7 @@ class BookingController extends AbstractController
     #[Route('/{id}', name: 'app_booking_delete', methods: ['POST'])]
     public function delete(Request $request, Booking $booking, BookingRepository $bookingRepository): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$booking->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $booking->getId(), $request->request->get('_token'))) {
             $bookingRepository->remove($booking, true);
         }
 
