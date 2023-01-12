@@ -39,13 +39,13 @@
 					<td><img class="vehiclePicture" src="{{ vehicle.photo }}"></td>
 					<td>{{ vehicle.kilometrage }}</td>
 					<td class="d-flex flex-column justify-content-center">
-						<a class="btn btn-warning m-2" href="{{ path('app_vehicle_show', {'id': vehicle.id}) }}">show</a>
-						<a class="btn btn-warning m-2" href="{{ path('app_vehicle_edit', {'id': vehicle.id}) }}">edit</a>
+						<a class="btn btn-warning m-2" href="{{ path('app_vehicle_show', {'id': vehicle.id}) }}">Voir</a>
+						<a class="btn btn-warning m-2" href="{{ path('app_vehicle_edit', {'id': vehicle.id}) }}">Modifier</a>
 					</td>
 				</tr>
 			{% else %}
 				<tr>
-					<td colspan="10">no records found</td>
+					<td colspan="10">Pas de données trouvées</td>
 				</tr>
 			{% endfor %}
 		</tbody>
