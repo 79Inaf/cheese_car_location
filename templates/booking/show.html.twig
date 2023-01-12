@@ -13,6 +13,7 @@
 				<th>Au</th>
 				<th>Statut</th>
 				<th>Marque</th>
+				<th>Propriétaire</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -21,6 +22,7 @@
 				<td>{{ booking.endAt ? booking.endAt|date('Y-m-d H:i:s') : '' }}</td>
 				<td>{{ booking.title }}</td>
 				<td>{{ booking.vehicle.marque }}</td>
+				<td>{{ booking.vehicle.owner.prenom }} {{ booking.vehicle.owner.nom }}</td>
 			</tr>
 		</tbody>
 	</table>
