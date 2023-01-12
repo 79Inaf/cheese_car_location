@@ -2,7 +2,7 @@
 	<img src="{{ vehicle.photo }}" class="card-img-top" alt="photo voiture">
 	<div class="card-body">
 		<h5 class="card-title">{{ vehicle.marque }}</h5>
-		<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+		<p class="card-text"></p>
 	</div>
 	<ul class="list-group list-group-flush">
 		<li class="list-group-item">
@@ -25,6 +25,6 @@
 			{{ vehicle.kilometrage }}</li>
 	</ul>
 	<div class="card-body text-center">
-		<a href="{{ path('app_vehicle_index') }}" class="btn card-link">back to list</a>
+		<a class="btn btn-warning" href="{{ path('app_vehicle_index') }}" class="btn card-link">retour à la liste</a>
 	</div>
 </div>

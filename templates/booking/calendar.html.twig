@@ -3,7 +3,7 @@
 {% block body %}
     {% if is_granted('ROLE_OWNER') %}
 		{% if app.user.id == vehicle.owner.id %}
-            <a href="{{ path('app_booking_new', {'id': vehicle.id}) }}">Ajouter une nouvelle disponibilité</a>
+            <a class="btn btn-warning mb-3" href="{{ path('app_booking_new', {'id': vehicle.id}) }}">Ajouter une nouvelle disponibilité</a>
         {% endif %}
     {% endif %}    
 
