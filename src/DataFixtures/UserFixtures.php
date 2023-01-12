@@ -33,7 +33,7 @@ class UserFixtures extends Fixture
         // Création d’un utilisateur de type “pro” 
         $pro = new User();
         $pro->setEmail('pro@voiture.com');
-        $pro->setRoles(['ROLE_PRO']);
+        $pro->setRoles(['ROLE_OWNER']);
         $hashedPassword = $this->passwordHasher->hashPassword(
             $pro,
             'propassword'
