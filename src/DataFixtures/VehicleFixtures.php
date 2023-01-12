@@ -5,6 +5,7 @@ namespace App\DataFixtures;
 use App\Entity\Vehicle;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
+use Faker\Factory;
 
 class VehicleFixtures extends Fixture
 {
@@ -16,7 +17,7 @@ class VehicleFixtures extends Fixture
         $vehicle->setAnnee('2021');
         $vehicle->setBoiteVitesse('automatique');
         $vehicle->setEnergie('hybride');
-        $vehicle->setMarque('Skoda superb');
+        $vehicle->setMarque('Skoda Superb');
         $vehicle->setPhoto('https://s2.qwant.com/thumbr/0x380/4/8/3bd0d32af19077672503d0dff18c48e602482ba515cf85bb0571e4ad96e7a4/superb-3-lb-fl-front.jpg?u=https%3A%2F%2Fauto.ironhorse.ru%2Fwp-content%2Fuploads%2F2015%2F10%2Fsuperb-3-lb-fl-front.jpg&q=0&b=1&p=0&a=0');
         $vehicle->setKilometrage('65000');
         $manager->persist($vehicle);
@@ -53,6 +54,24 @@ class VehicleFixtures extends Fixture
         $vehicle3->setPhoto('https://s2.qwant.com/thumbr/0x380/7/9/84ca18912c01fa44502277d03bb2d77b7e9bcbe5d452dfe57679949ca538d0/alfa-romeo-montreal.jpg?u=https%3A%2F%2Fwww.largus.fr%2Fimages%2Fimages%2Falfa-romeo-montreal.jpg&q=0&b=1&p=0&a=0');
         $vehicle3->setKilometrage('12000');
         $manager->persist($vehicle3);
+
+        $faker = Factory::create();
+        $types = ['berline', 'citadine', 'familiale', 'coupé'];
+        $clutches = ['automatique', 'manuelle'];
+        $energy = ['hybride', 'essence', 'diesel', 'électrique'];
+
+        for ($i = 0; $i < 50; $i++) {
+            $vehicle = new Vehicle();
+            $vehicle->setType($faker->randomElement($types));
+            $vehicle->setNombrePlaces($faker->numberBetween(1, 6));
+            $vehicle->setAnnee($faker->year());
+            $vehicle->setBoiteVitesse($faker->randomElement($clutches));
+            $vehicle->setEnergie($faker->randomElement($energy));
+            $vehicle->setMarque($faker->words(2, true));
+            $vehicle->setKilometrage($faker->numberBetween(10, 300000));
+            $vehicle->setPhoto($faker->imageUrl(200, 125, 'car', true));
+            $manager->persist($vehicle);
+        }
 
 
         $manager->flush();
