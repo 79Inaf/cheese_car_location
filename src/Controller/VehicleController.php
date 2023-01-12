@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Vehicle;
+use App\Form\SearchVehicleType;
 use App\Form\VehicleType;
 use App\Repository\VehicleRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -13,11 +14,22 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/vehicle')]
 class VehicleController extends AbstractController
 {
-    #[Route('/', name: 'app_vehicle_index', methods: ['GET'])]
-    public function index(VehicleRepository $vehicleRepository): Response
+    #[Route('/', name: 'app_vehicle_index', methods: ['GET', 'POST'])]
+    public function index(Request $request, VehicleRepository $vehicleRepository): Response
     {
-        return $this->render('vehicle/index.html.twig', [
-            'vehicles' => $vehicleRepository->findAll(),
+        $form = $this->createForm(SearchVehicleType::class);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $search = $form->getData()['search'];
+            $vehicles = $vehicleRepository->findLikeType($search);
+        } else {
+            $vehicles = $vehicleRepository->findAll();
+        }
+
+        return $this->renderForm('vehicle/index.html.twig', [
+            'vehicles' => $vehicles,
+            'form' => $form,
         ]);
     }
 
@@ -69,7 +81,7 @@ class VehicleController extends AbstractController
     #[Route('/{id}', name: 'app_vehicle_delete', methods: ['POST'])]
     public function delete(Request $request, Vehicle $vehicle, VehicleRepository $vehicleRepository): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$vehicle->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $vehicle->getId(), $request->request->get('_token'))) {
             $vehicleRepository->remove($vehicle, true);
         }
 
