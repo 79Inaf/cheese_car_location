@@ -26,8 +26,10 @@ class UserFixtures extends Fixture
             $user,
             'userpassword'
         );
-
         $user->setPassword($hashedPassword);
+        $user->setPrenom('Olivier');
+        $user->setNom('DeCarglass');
+
         $manager->persist($user);
 
         // Création d’un utilisateur de type “pro” 
