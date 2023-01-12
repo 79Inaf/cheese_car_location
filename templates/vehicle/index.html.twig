@@ -30,7 +30,7 @@
                 <td>{{ vehicle.boiteVitesse }}</td>
                 <td>{{ vehicle.energie }}</td>
                 <td>{{ vehicle.marque }}</td>
-                <td><img src="{{ vehicle.photo }}"></td>
+                <td><img class="vehiclePicture" src="{{ vehicle.photo }}"></td>
                 <td>{{ vehicle.kilometrage }}</td>
                 <td>
                     <a href="{{ path('app_vehicle_show', {'id': vehicle.id}) }}">show</a>
