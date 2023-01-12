@@ -14,7 +14,7 @@ class SearchVehicleType extends AbstractType
         $builder
             ->add('search', SearchType::class, [
                 'label' => false,
-                'attr' => ['class' => 'form-input'],
+                'attr' => ['class' => 'form-input', 'placeholder' => 'recherche par type'],
             ]);
     }
 
