@@ -21,10 +21,9 @@
 	<nav>
 		{% include "shared/_navbar.html.twig" %}
 	</nav>
-	<body>
-		{% block body %}{% endblock %}
-	</body>
-	<footer class="footerbar bg-warning shadow-lg text-center container-fluid">
-		{% include "shared/_footer.html.twig" %}
-	</footer>
-</html>
+	<body class="body"> {% block body %}{% endblock %}
+		</body>
+		<footer class="footerbar bg-warning shadow-lg text-center container-fluid fixed-bottom">
+			{% include "shared/_footer.html.twig" %}
+		</footer>
+	</html>
