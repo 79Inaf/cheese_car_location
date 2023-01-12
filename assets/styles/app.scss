@@ -6,4 +6,6 @@ body {
     max-width: 200px;
 }
 
+$enable-shadows: true;
+
 @import "~bootstrap/scss/bootstrap";
