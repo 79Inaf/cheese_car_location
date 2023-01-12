@@ -1,7 +1,7 @@
 
 
 {% block body %}
-    <a href="{{ path('app_booking_new', {'id': vehicle.id}) }}">Ajouter une nouvelle disponibilité</a>
+    <a class="btn btn-warning mb-3" href="{{ path('app_booking_new', {'id': vehicle.id}) }}">Ajouter une nouvelle disponibilité</a>
 
     <div id="calendar-holder"></div>
 {% endblock %}
