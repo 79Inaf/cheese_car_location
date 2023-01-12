@@ -16,13 +16,14 @@ class CommentType extends AbstractType
         $builder
             ->add('content', TextareaType::class, [
                 'attr' => [
-                    'placeholder' => 'Laisser votre commentaire'
+                    'placeholder' => 'Laisser votre proposition',
+                    'class' => 'form-control mb-3'
                 ]
             ])
             ->add('submit', SubmitType::class, [
-                'label' => 'Ajouter un commentaire',
+                'label' => 'Ajouter une propostion',
                 'attr' => [
-                    'class' => 'btn-warning'
+                    'class' => 'btn btn-dark text-warning'
                 ]
             ]);
     }
