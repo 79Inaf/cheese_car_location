@@ -58,6 +58,7 @@ class BookingController extends AbstractController
     public function show(Booking $booking, CommentRepository $commentRepository, Request $request): Response
     {
         $booking->getComments();
+        $booking->getVehicle();
 
         /** @var \App\Entity\User $user */
         $user = $this->getUser();

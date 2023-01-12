@@ -24,6 +24,10 @@
 				<th>Title</th>
 				<td>{{ booking.title }}</td>
 			</tr>
+			<tr>
+				<th>Marque</th>
+				<td>{{ booking.vehicle.marque }}</td>
+			</tr>
 		</tbody>
 	</table>
 
@@ -33,38 +37,35 @@
 
 	{{ include('booking/_delete_form.html.twig') }}
 
-	<div class="col-12 col-md-6">
-		<div class="container bloc_test">
-			<div class="row">
-				<div class="mb-3 mx-auto">
-					<div class="align-middle">
-						<h1 class="text-center m-5">Comments</h1>
-						<form class="form-idea form bg-lightgrey p-3 shadow bg-light" method="post" action="#anchor">
-							{{ form_start(form) }}
-							{{ form_errors(form) }}
-							<div>
-								{{ form_row(form.content)}}
-								{{ form_errors(form.content)}}
-							</div>
-							<div class="text-center">
-								{{ form_row(form.submit) }}
-							</div>
-							{{ form_end(form) }}
-						</form>
-					</div>
+	<div class="container">
+		<div class="row">
+			<div class="mb-3 mx-auto">
+				<div class="align-middle">
+					<h1 class="text-center m-2">Comments</h1>
+					<form class="form-idea form bg-warning rounded-3 p-3 shadow" method="post" action="#anchor">
+						{{ form_start(form) }}
+						<div class="text-center">
+							{{ form_widget(form.content)}}
+						</div>
+						<div class="text-center">
+							{{ form_row(form.submit) }}
+						</div>
+						{{ form_end(form) }}
+					</form>
 				</div>
 			</div>
 		</div>
+	</div>
 
-		{% for comment in booking.comments %}
-			<div class="m-3 p-3 border border-secondary rounded border-5 bg-secondary">
-				<h3>From:
-					{{ comment.author.prenom }}
-					{{ comment.author.nom }}</h3>
-				<p>{{ comment.content }}</p>
-			</div>
-		{% else %}
-			No comments found.
-		{% endfor %}
+	{% for comment in booking.comments %}
+		<div class="m-3 p-3 rounded bg-warning">
+			<h3>From:
+				{{ comment.author.prenom }}
+				{{ comment.author.nom }}</h3>
+			<p>{{ comment.content }}</p>
+		</div>
+	{% else %}
+		No comments found.
+	{% endfor %}
 
-	{% endblock %}
+{% endblock %}
