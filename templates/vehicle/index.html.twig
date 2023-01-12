@@ -6,12 +6,13 @@
 {% block body %}
 
 	<h1 class="text-center m-3">Toutes nos voitures</h1>
-	<div class="ms-3 mb-3">
-	{{ form_start(form) }}
-	{{ form_widget(form) }}
+	<div class="ms-3 mb-3 d-flex justify-content-center">
+		{{ form_start(form) }}
+		{{ form_widget(form) }}
+		<button class="btn btn-warning mt-3" type="submit">Chercher</button>
+		{{ form_end(form) }}
 	</div>
-	<button class="btn btn-warning ms-3" type="submit">Chercher</button>
-	{{ form_end(form) }}
+
 
 	<table class="table mt-5">
 		<thead>
