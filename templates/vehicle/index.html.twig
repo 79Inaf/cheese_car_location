@@ -22,9 +22,10 @@
 				<th>BoiteVitesse</th>
 				<th>Energie</th>
 				<th>Marque</th>
-				<th>Photo</th>
 				<th>Kilometrage</th>
-				<th class="text-center">actions</th>
+				<th>Photo</th>
+				<th>Localisation</th>
+				<th>actions</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -36,13 +37,14 @@
 					<td>{{ vehicle.boiteVitesse }}</td>
 					<td>{{ vehicle.energie }}</td>
 					<td>{{ vehicle.marque }}</td>
-					<td><img class="vehiclePicture" src="{{ vehicle.photo }}"></td>
 					<td>{{ vehicle.kilometrage }}</td>
-					<td class="d-flex flex-column justify-content-center">
-						<a class="btn btn-warning m-2" href="{{ path('app_vehicle_show', {'id': vehicle.id}) }}">Voir</a>
+					<td><img class="vehiclePicture" src="{{ vehicle.photo }}"></td>
+					<td>{{ vehicle.localisation }}</td>
+					<td>
+						<a class="btn btn-warning col-6 m-2" href="{{ path('app_vehicle_show', {'id': vehicle.id}) }}">Voir</a>
 						{% if is_granted('ROLE_OWNER') %}
 							{% if app.user.id == vehicle.owner.id %}
-								<a class="btn btn-warning m-2" href="{{ path('app_vehicle_edit', {'id': vehicle.id}) }}">Modifier</a>
+								<a class="btn btn-warning col-6 m-2" href="{{ path('app_vehicle_edit', {'id': vehicle.id}) }}">Modifier</a>
 							{% endif %}
 						{% endif %}
 					</td>
@@ -55,5 +57,5 @@
 		</tbody>
 	</table>
 
-	<a class="btn btn-warning" href="{{ path('app_vehicle_new') }}">Ajouter un nouveau véhicule</a>
+	{# <a class="btn btn-warning" href="{{ path('app_vehicle_new') }}">Ajouter un nouveau véhicule</a> #}
 {% endblock %}

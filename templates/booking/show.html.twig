@@ -6,13 +6,14 @@
 {% block body %}
 	<h1 class="text-center mt-3">Créneau</h1>
 
-	<table class="table">
+	<table class="table m-3">
 		<thead>
 			<tr>
 				<th>Du</th>
 				<th>Au</th>
 				<th>Statut</th>
 				<th>Marque</th>
+				<th>Propriétaire</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -21,17 +22,21 @@
 				<td>{{ booking.endAt ? booking.endAt|date('Y-m-d H:i:s') : '' }}</td>
 				<td>{{ booking.title }}</td>
 				<td>{{ booking.vehicle.marque }}</td>
+				<td>{{ booking.vehicle.owner.prenom }} {{ booking.vehicle.owner.nom }}</td>
 			</tr>
 		</tbody>
 	</table>
 
-	<div class="d-flex justify-content-evenly">
-		<a class="btn btn-warning ms-4 mt-3" href="{{ path('app_booking_index') }}">retour à la liste</a>
+	{% if is_granted('ROLE_OWNER') %}
+		{% if app.user.id == booking.vehicle.owner.id %}
+			<div class="d-flex justify-content-evenly">
+				<a class="btn btn-warning ms-4 mt-3" href="{{ path('app_booking_edit', {'id': booking.id}) }}">modifier</a>
 
-		<a class="btn btn-warning ms-4 mt-3" href="{{ path('app_booking_edit', {'id': booking.id}) }}">modifier</a>
-
-		{{ include('booking/_delete_form.html.twig') }}
-	</div>
+				{{ include('booking/_delete_form.html.twig') }}
+			</div>
+		{% endif %}
+	{% endif %}
+	
 
 	<div class="container mt-3">
 		<div class="row">

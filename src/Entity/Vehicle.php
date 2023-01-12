@@ -45,6 +45,9 @@ class Vehicle
     #[ORM\ManyToOne(inversedBy: 'vehicles')]
     private ?User $owner = null;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $localisation = null;
+
     public function __construct()
     {
         $this->bookings = new ArrayCollection();
@@ -189,6 +192,18 @@ class Vehicle
     public function setOwner(?User $owner): self
     {
         $this->owner = $owner;
+
+        return $this;
+    }
+
+    public function getLocalisation(): ?string
+    {
+        return $this->localisation;
+    }
+
+    public function setLocalisation(?string $localisation): self
+    {
+        $this->localisation = $localisation;
 
         return $this;
     }
