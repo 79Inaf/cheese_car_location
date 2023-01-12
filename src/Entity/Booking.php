@@ -28,6 +28,9 @@ class Booking
     #[ORM\OneToMany(mappedBy: 'booking', targetEntity: Comment::class)]
     private Collection $comments;
 
+    #[ORM\ManyToOne(inversedBy: 'bookings')]
+    private ?Vehicle $vehicle = null;
+
     public function __construct()
     {
         $this->comments = new ArrayCollection();
@@ -100,6 +103,18 @@ class Booking
                 $comment->setBooking(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getVehicle(): ?Vehicle
+    {
+        return $this->vehicle;
+    }
+
+    public function setVehicle(?Vehicle $vehicle): self
+    {
+        $this->vehicle = $vehicle;
 
         return $this;
     }
