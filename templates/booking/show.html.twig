@@ -1,32 +1,35 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Créneau{% endblock %}
+{% block title %}Créneau
+{% endblock %}
 
 {% block body %}
-    <h1>Créneau</h1>
+	<h1>Créneau</h1>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Du</th>
-                <td>{{ booking.beginAt ? booking.beginAt|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-            <tr>
-                <th>Au</th>
-                <td>{{ booking.endAt ? booking.endAt|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-            <tr>
-                <th>Statut</th>
-                <td>{{ booking.title }}</td>
-            </tr>
-        </tbody>
-    </table>
+	<table class="table m-3">
+		<tbody>
+			<tr>
+				<th>Du</th>
+				<td>{{ booking.beginAt ? booking.beginAt|date('Y-m-d H:i:s') : '' }}</td>
+			</tr>
+			<tr>
+				<th>Au</th>
+				<td>{{ booking.endAt ? booking.endAt|date('Y-m-d H:i:s') : '' }}</td>
+			</tr>
+			<tr>
+				<th>Statut</th>
+				<td>{{ booking.title }}</td>
+			</tr>
+		</tbody>
+	</table>
 
-    <a class="btn btn-warning" href="{{ path('app_booking_index') }}">retour à la liste</a>
+	{% if is_granted('ROLE_OWNER') %}
+		{% if app.user.id == booking.vehicle.owner.id %}
+			<a class="btn btn-warning" href="{{ path('app_booking_edit', {'id': booking.id}) }}">modifier</a>
 
-    <a class="btn btn-warning" href="{{ path('app_booking_edit', {'id': booking.id}) }}">modifier</a>
-
-	{{ include('booking/_delete_form.html.twig') }}
+			{{ include('booking/_delete_form.html.twig') }}
+		{% endif %}
+	{% endif %}
 
 	<div class="col-12 col-md-6">
 		<div class="container bloc_test">
