@@ -12,7 +12,10 @@ class SearchVehicleType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('search', SearchType::class, array('label' => false));
+            ->add('search', SearchType::class, [
+                'label' => false,
+                'attr' => ['class' => 'form-input'],
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

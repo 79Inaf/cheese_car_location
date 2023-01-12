@@ -4,17 +4,18 @@
 {% endblock %}
 
 {% block body %}
-	<h1>Toutes nos voitures</h1>
 
+	<h1 class="text-center m-3">Toutes nos voitures</h1>
+	<div class="ms-3 mb-3">
 	{{ form_start(form) }}
 	{{ form_widget(form) }}
-	<button class="btn btn-outline-success" type="submit">Chercher</button>
+	</div>
+	<button class="btn btn-warning ms-3" type="submit">Chercher</button>
 	{{ form_end(form) }}
 
-	<table class="table">
+	<table class="table mt-5">
 		<thead>
-			<tr>
-				<th>Id</th>
+			<tr class="bg-warning">
 				<th>Type</th>
 				<th>NombrePlaces</th>
 				<th>Annee</th>
@@ -23,13 +24,12 @@
 				<th>Marque</th>
 				<th>Photo</th>
 				<th>Kilometrage</th>
-				<th>actions</th>
+				<th class="text-center">actions</th>
 			</tr>
 		</thead>
 		<tbody>
 			{% for vehicle in vehicles %}
 				<tr>
-					<td>{{ vehicle.id }}</td>
 					<td>{{ vehicle.type }}</td>
 					<td>{{ vehicle.nombrePlaces }}</td>
 					<td>{{ vehicle.annee }}</td>
@@ -38,9 +38,9 @@
 					<td>{{ vehicle.marque }}</td>
 					<td><img class="vehiclePicture" src="{{ vehicle.photo }}"></td>
 					<td>{{ vehicle.kilometrage }}</td>
-					<td>
-						<a href="{{ path('app_vehicle_show', {'id': vehicle.id}) }}">show</a>
-						<a href="{{ path('app_vehicle_edit', {'id': vehicle.id}) }}">edit</a>
+					<td class="d-flex flex-column justify-content-center">
+						<a class="btn btn-warning m-2" href="{{ path('app_vehicle_show', {'id': vehicle.id}) }}">show</a>
+						<a class="btn btn-warning m-2" href="{{ path('app_vehicle_edit', {'id': vehicle.id}) }}">edit</a>
 					</td>
 				</tr>
 			{% else %}
@@ -51,5 +51,5 @@
 		</tbody>
 	</table>
 
-	<a href="{{ path('app_vehicle_new') }}">Create new</a>
+	<a class="btn btn-warning" href="{{ path('app_vehicle_new') }}">Ajouter un nouveau véhicule</a>
 {% endblock %}
