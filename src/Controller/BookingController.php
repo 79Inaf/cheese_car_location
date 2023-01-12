@@ -9,13 +9,14 @@ use App\Form\Booking1Type;
 use App\Form\CommentType;
 use App\Repository\BookingRepository;
 use App\Repository\CommentRepository;
-use App\Repository\VehicleRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 #[Route('/booking')]
+#[IsGranted('ROLE_USER')]
 class BookingController extends AbstractController
 {
     #[Route('/', name: 'app_booking_index', methods: ['GET'])]
@@ -60,7 +61,6 @@ class BookingController extends AbstractController
 
         /** @var \App\Entity\User $user */
         $user = $this->getUser();
-
         $comment = new Comment();
         $form = $this->createForm(CommentType::class, $comment);
         $form->handleRequest($request);
