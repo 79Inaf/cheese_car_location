@@ -18,11 +18,12 @@
 		</thead>
 		<tbody>
 			<tr>
-				<td>{{ booking.beginAt ? booking.beginAt|date('Y-m-d H:i:s') : '' }}</td>
-				<td>{{ booking.endAt ? booking.endAt|date('Y-m-d H:i:s') : '' }}</td>
+				<td>{{ booking.beginAt ? booking.beginAt|date('d-m-Y') : '' }}</td>
+				<td>{{ booking.endAt ? booking.endAt|date('d-m-Y') : '' }}</td>
 				<td>{{ booking.title }}</td>
 				<td>{{ booking.vehicle.marque }}</td>
-				<td>{{ booking.vehicle.owner.prenom }} {{ booking.vehicle.owner.nom }}</td>
+				<td>{{ booking.vehicle.owner.prenom }}
+					{{ booking.vehicle.owner.nom }}</td>
 			</tr>
 		</tbody>
 	</table>
@@ -36,7 +37,7 @@
 			</div>
 		{% endif %}
 	{% endif %}
-	
+
 
 	<div class="container mt-3">
 		<div class="row">
